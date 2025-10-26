@@ -1,0 +1,26 @@
+name: Python CI
+
+on:
+  push:
+    branches:
+      - develop
+      - 'feature/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install pytest
+        run: pip install pytest
+
+      - name: Run test file
+        run: pytest test_calculator.py
